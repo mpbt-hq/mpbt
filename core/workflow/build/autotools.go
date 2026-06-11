@@ -14,7 +14,16 @@ func (ab *AutotoolsBuilder) RunPrepare() error {
 }
 
 func (ab *AutotoolsBuilder) RunConfigure() error {
-	return ab.ExecInSourceDir([]string{"./configure", fmt.Sprintf("--prefix=%s", ab.Package.GetInstallPrefix())})
+	args := []string{"./configure",
+		fmt.Sprintf("--prefix=%s", ab.Package.GetInstallPrefix())}
+
+	autoconf_args := ab.Package.GetStrList("autoconf-args")
+	autoconf_extra_args := ab.Package.GetStrList("autoconf-extra-args")
+
+	args = append(args, autoconf_args...)
+	args = append(args, autoconf_extra_args...)
+
+	return ab.ExecInSourceDir(args)
 }
 
 func (ab *AutotoolsBuilder) RunBuild() error {
