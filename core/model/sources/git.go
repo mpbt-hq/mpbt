@@ -37,10 +37,10 @@ type Git struct {
 
 func LoadGitRemote(ent api.Entry, name string) GitRemote {
 	return GitRemote{
-		Name:  name,
-		Url:   api.GetStr(ent, "url"),
-		Depth: api.GetInt(ent, "depth", 0),
-		Fetch: api.GetStrList(ent, "fetch"),
+		Name:   name,
+		Url:    api.GetStr(ent, "url"),
+		Depth:  api.GetInt(ent, "depth", 0),
+		Fetch:  api.GetStrList(ent, "fetch"),
 		TagOpt: api.GetStr(ent, "tagopt"),
 	}
 }

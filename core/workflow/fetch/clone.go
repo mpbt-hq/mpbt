@@ -16,7 +16,7 @@ func addConfig(pkg *model.Package, repo util.GitRepo, gitspec *sources.Git) erro
 		}
 	}
 
-	if (gitspec.Config == nil) {
+	if gitspec.Config == nil {
 		return nil
 	}
 
