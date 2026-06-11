@@ -10,6 +10,10 @@ type AutotoolsBuilder struct {
 }
 
 func (ab *AutotoolsBuilder) RunPrepare() error {
+	if ab.Package.GetBool("skip-prepare", false) {
+		return nil
+	}
+
 	return ab.ExecInSourceDir([]string{"./autogen.sh"})
 }
 
